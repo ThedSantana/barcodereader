@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.bsilva.barcodereader.MainActivity">
+
+    <Button
+        android:id="@+id/scanbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.Button"
+        android:text="SCAN"
+        android:layout_centerHorizontal="true"
+        />
+
+    <TextView
+        android:id="@+id/labelcodes"
+        android:layout_below="@id/scanbtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:textSize="30dp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:text="@string/codeslabel"/>
+
+    <ListView
+        android:id="@+id/results"
+        android:layout_below="@id/labelcodes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+</RelativeLayout>
