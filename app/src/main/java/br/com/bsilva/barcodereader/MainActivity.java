@@ -89,8 +89,9 @@ public class MainActivity extends AppCompatActivity {
         results.setOnCreateContextMenuListener(new View.OnCreateContextMenuListener(){
             @Override
             public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-                menu.add(Menu.NONE,1,Menu.NONE,"Copiar");
-                menu.add(Menu.NONE,2,Menu.NONE,"Deletar");
+                menu.add(Menu.NONE,1,Menu.NONE,"Compartilhar");
+                menu.add(Menu.NONE,2,Menu.NONE,"Copiar");
+                menu.add(Menu.NONE,3,Menu.NONE,"Deletar");
             }
         });
 
@@ -155,6 +156,18 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(MainActivity.this,"Code Deletado!",Toast.LENGTH_LONG).show();
     }
 
+
+    private void compartilharCode(int position) {
+
+        Codes code = (Codes) adapter.getItem(position);
+
+        Intent compartilha = new Intent(Intent.ACTION_SEND);
+        compartilha.setType("text/plain");
+        compartilha.putExtra(Intent.EXTRA_SUBJECT, "Compartilhando code.");
+        compartilha.putExtra(Intent.EXTRA_TEXT, code.getCode());
+        startActivity(Intent.createChooser(compartilha, "Compartilhando"));
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(requestCode == REQUEST_CODE && resultCode == resultCode){
@@ -175,9 +188,12 @@ public class MainActivity extends AppCompatActivity {
         int position = menuInfo.position;
         switch (item.getItemId()) {
             case 1:
-                copyCode(position);
+                compartilharCode(position);
                 break;
             case 2:
+                copyCode(position);
+                break;
+            case 3:
                 deletar(position);
                 break;
         }
